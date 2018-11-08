@@ -44,6 +44,16 @@ module.exports = [{
 	externals: {
 		jquery: 'jQuery'
 	},
+	resolve: {
+		// モジュールを読み込むときに検索するディレクトリの設定
+		modules: [path.join(__dirname, 'src'), 'node_modules'],
+		// importするときに省略できる拡張子の設定
+		extensions: ['.js', '.vue'],
+		alias: {
+		  // `import Vue from 'vue';` と記述したときの`from vue`が表すファイルパスを指定
+		  'vue$': 'vue/dist/vue.esm.js'
+		}
+	},
 	plugins: [
 		new webpack.ProvidePlugin({
 			$: 'jquery',
@@ -68,15 +78,6 @@ module.exports = [{
 	output: {
 		path: path.join(__dirname, './dev/css'),
 		filename: '[name].css'
-	},
-	resolve: {
-		extensions: ['.js', '.vue'],
-		modules: [
-			"node_modules"
-		],
-		alias: {
-			vue: 'vue/dist/vue.common.js'
-		}
 	},
 	module: {
 		rules: [
