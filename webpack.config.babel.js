@@ -35,9 +35,22 @@ module.exports = [{
 			{
 				test: /\.vue$/,
 				exclude: /(node_modules)/,
-				use: 'vue-loader'
+				loader: 'vue-loader',
+				options: {
+					loaders: {
+						scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+						sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+					}
+				}
 			},
-			{ test: /\.css$/, loader: 'style-loader!css-loader' },
+			{
+				test: /\.(css|scss)$/,
+				use: [
+					{loader: 'style-loader'},
+					{loader: 'css-loader'},
+					{loader: 'sass-loader'}
+				]
+			},
 			{ test: /\.pug$/, loader: 'pug-plain-loader'}
 		]
 	},

@@ -1,10 +1,10 @@
 import bowser from 'bowser';
 import matchheight from 'jquery-match-height';
 import Vue from 'vue';
-import Store from './vuex/index.js'
-import Router from './routes/routes.js';
+import Store from './vuex/index'
+import Router from './routes/routes';
 import axios from 'axios';
-import App from './App.vue'
+import App from './App'
 import moment from 'moment';
 import Responsive from './utils/Responsive';
 import SmoothScroll from './utils/SmoothScroll';
@@ -47,12 +47,12 @@ $('body').addClass(os);
 /**
  * setup Vue
  */
-const thisVue = new Vue({
+Vue.config.productionTip = false
+new Vue({
 	store:Store,
-	router: Router,
+	router:Router,
 	el: '#app',
-	template: '<App/>',
-	components: { App }
+	render: h => h(App)
 });
 
 const sms = new SmoothScroll();
